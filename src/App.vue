@@ -1,32 +1,102 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <TheHeader />
+    <main id="main-view">
+      <div class="container">
+        <router-view />
+      </div>
+    </main>
+    <TheFooter />
   </div>
 </template>
 
+<script>
+import TheHeader from "@/components/TheHeader.vue";
+import TheFooter from "@/components/TheFooter.vue";
+
+export default {
+  components: {
+    TheHeader,
+    TheFooter,
+  },
+};
+</script>
+
 <style>
+:root {
+  /* Font family */
+  --font-family: "Poppins";
+  /* Colors and Background */
+  --bg-purple: #87f;
+  --bg-hover-purple: #65d;
+  --text-primary: #345;
+  --shadow-box: rgba(30, 60, 90, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+ul,
+li,
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  font-family: var(--font-family), sans-serif;
+  color: var(--text-primary);
+  background: url("./assets/pattern.svg") repeat top;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  padding: 0 1.5rem;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+.btn {
+  display: block;
+  padding: 0.625rem 1.875rem;
+  background-color: var(--bg-purple);
+  border-radius: 0.25rem;
   text-align: center;
-  color: #2c3e50;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px var(--shadow-box);
+  font-family: var(--font-family);
+  color: #fff;
+  transition: all 0.3s;
 }
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.btn:hover {
+  background-color: var(--bg-hover-purple);
+  transform: scale(1.1);
 }
 </style>
