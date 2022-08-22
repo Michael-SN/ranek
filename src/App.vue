@@ -25,7 +25,7 @@ export default {
 <style>
 :root {
   /* Font family */
-  --font-family: "Poppins";
+  --font-family: "Poppins", sans-serif;
   /* Colors and Background */
   --bg-purple: #87f;
   --bg-hover-purple: #65d;
@@ -100,5 +100,28 @@ main {
 .btn:hover {
   background-color: var(--bg-hover-purple);
   transform: scale(1.1);
+}
+
+
+input,
+textarea {
+  border-radius: 4px;
+  border: 1px solid #fff;
+  padding: 0.9375rem;
+  box-shadow: 0 4px 8px var(--shadow-box);
+  transition: all .3s;
+  font-size: 1rem;
+  font-family: var(--font-family);
+  margin-bottom: 0.9375rem;
+}
+
+
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 6px 12px var(--shadow-box);
+  border-color: var(--bg-hover-purple);
 }
 </style>

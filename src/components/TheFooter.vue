@@ -19,6 +19,6 @@ footer {
   text-align: center;
   color: #fff;
   font-size: 0.875rem;
-  position: relative;  
+  position: relative;
 }
 </style>
