@@ -2,8 +2,8 @@
   <div class="home">
     <h1>&#11088; Compre ou Venda &#11088;</h1>
 
-    <ProductsList  />
-    <ProductsSearch/> 
+    <ProductsSearch />
+    <ProductsList />
   </div>
 </template>
 
@@ -23,7 +23,6 @@ export default {
 
 
 <style scoped>
-
 .home {
   margin-top: 2.5rem;
 }
@@ -31,6 +30,6 @@ export default {
 h1 {
   text-align: center;
   color: var(--bg-purple);
-  font-size: 2rem;  
+  font-size: 2rem;
 }
 </style>
