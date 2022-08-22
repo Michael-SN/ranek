@@ -10,29 +10,31 @@
 </template>
 
 <script>  
-  export default {
-    name : "ProductsList",
-    data() {
-      return {
-        products: null
-      }
-    },
-    methods: {
-      getProducts() {
-        fetch("http://localhost:3000/product")
-        .then(res => res.json())
-        .then(respJson => {          
-          this.products = respJson
-        })
-        .catch((e)=> {
-          console.error('There has been a problem with your fetch operation: ' + e.message);
-        })
-      }
-    },    
-    created() {
-      this.getProducts()
+import { api } from "@/axios/index.js"
+
+export default {
+  name : "ProductsList",
+  data() {
+    return {
+      products: null
     }
+  },
+  methods: {
+    getProducts() {
+      api.get("/product")        
+      .then(res => {       
+        console.log(res)   
+        this.products = res.data
+      })
+      .catch((e)=> {
+        console.error('There has been a problem with your fetch operation: ' + e.message);
+      })
+    }
+  },    
+  created() {
+    this.getProducts()
   }
+}
 </script>
 
 <style scoped>
