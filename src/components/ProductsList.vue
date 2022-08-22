@@ -1,13 +1,21 @@
 <template>
-  <div class="products-container">
-    <div v-for="product in products" :key="product.id">
-      <img v-if="product.photos" :src="product.photos[0].src" :alt="product.photos[0].title">
-      <h2>{{ product.name }}</h2>
-      <p>{{ product.price }}</p>
-      <p>{{ product.description }}</p>
+  <section id="products">
+    <div class="products-content">
+      <div class="products" v-if="products && products.length">
+        <div v-for="product in products" :key="product.id" class="product">
+          <router-link to="/">
+            <img v-if="product.photos" :src="product.photos[0].src" :alt="product.photos[0].title">
+            <p class="price">{{ product.price }}</p>
+            <h2 class="title">{{ product.name }}</h2>
+            <p>{{ product.description }}</p>
+          </router-link>
+        </div>
+      </div>
+      <div v-else-if="products && products.length === 0" class="no-result">
+        <p>Busca sem resultados. Termo não encontrado.</p>
+      </div>
     </div>
-    {{ url }}
-  </div>
+  </section>
 </template>
 
 <script>
@@ -51,4 +59,49 @@ export default {
 </script>
 
 <style scoped>
+.products-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1.875rem;
+  margin: 1.875rem;
+}
+
+.product {
+  box-shadow: 0 4px 8px var(--shadow-box);
+  padding: .625rem;
+  background: #fff;
+  border-radius: 4px;
+  transition: all .3s;
+}
+
+.product:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, .2);
+  position: relative;
+  z-index: 1;
+}
+
+.product img {
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  margin-bottom: .625rem;
+}
+
+.price {
+  color: var(--text-orange);
+  font-weight: bold;
+}
+
+.no-result {
+  padding: .8rem 0;
+  text-align: center;
+}
 </style>

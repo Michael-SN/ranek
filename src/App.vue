@@ -30,6 +30,7 @@ export default {
   --bg-purple: #87f;
   --bg-hover-purple: #65d;
   --text-primary: #345;
+  --text-orange: #e80;
   --shadow-box: rgba(30, 60, 90, 0.2);
 }
 
@@ -95,6 +96,7 @@ main {
   color: #fff;
   transition: all 0.3s;
 }
+
 .btn:hover {
   background-color: var(--bg-hover-purple);
   transform: scale(1.1);
