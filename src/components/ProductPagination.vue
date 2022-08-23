@@ -35,11 +35,6 @@ export default {
 
       arrPages.splice(0, currentPage - offset)
       arrPages.splice(range, total)
-
-
-
-      console.log("lalalal", currentPage)
-
       return arrPages
     },
     totalPages() {
@@ -58,7 +53,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .pagination {
   grid-column: 1 / -1;
   text-align: center;
@@ -71,12 +66,12 @@ li {
 li a {
   padding: 0.125rem .5rem;
   border-radius: 2px;
-  margin: 0.25rem;
+  margin: rem(4);
 }
 
 li a.router-link-exact-active,
 li a:hover {
-  background: var(--bg-purple);
+  background: map-get($color, _orange);
   color: #fff;
 }
 </style>

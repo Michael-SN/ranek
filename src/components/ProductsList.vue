@@ -15,6 +15,9 @@
       <div v-else-if="products && products.length === 0" class="no-result">
         <p>Busca sem resultados. Termo não encontrado.</p>
       </div>
+      <div v-else>
+        <LoadingPage />
+      </div>
     </div>
   </section>
 </template>
@@ -23,6 +26,7 @@
 import ProductPagination from '@/components/ProductPagination.vue'
 import { api } from "@/axios/index.js"
 import { serialize } from "@/helpers/serialize.js"
+import LoadingPage from './LoadingPage.vue'
 
 export default {
   name: "ProductsList",
@@ -34,7 +38,8 @@ export default {
     }
   },
   components: {
-    ProductPagination
+    ProductPagination,
+    LoadingPage
   },
   computed: {
     url() {
@@ -44,6 +49,7 @@ export default {
   },
   methods: {
     getProducts() {
+      this.products = null
       api.get(this.url)
         .then(res => {
           this.productsTotal = Number(res.headers['x-total-count'])
