@@ -2,7 +2,7 @@
   <section id="products">
     <div class="products-content">
       <div class="products" v-if="products && products.length">
-        <div v-for="product in products" :key="product.id" class="product">
+        <div v-for="(product, index) in products" :key="index" class="product">
           <router-link to="/">
             <img v-if="product.photos" :src="product.photos[0].src" :alt="product.photos[0].title">
             <p class="price">{{ product.price }}</p>
@@ -10,6 +10,7 @@
             <p>{{ product.description }}</p>
           </router-link>
         </div>
+        <ProductPagination :productsTotal="productsTotal" :productsPerPage="productsPerPage" />
       </div>
       <div v-else-if="products && products.length === 0" class="no-result">
         <p>Busca sem resultados. Termo não encontrado.</p>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+import ProductPagination from '@/components/ProductPagination.vue'
 import { api } from "@/axios/index.js"
 import { serialize } from "@/helpers/serialize.js"
 
@@ -27,23 +29,28 @@ export default {
   data() {
     return {
       products: null,
-      productsPerPage: 9
+      productsPerPage: 3,
+      productsTotal: 0
     }
+  },
+  components: {
+    ProductPagination
   },
   computed: {
     url() {
       const query = serialize(this.$route.query)
-      return `/product?_limite=${this.productsPerPage}${query}`;
+      return `/product?_limit=${this.productsPerPage}${query}`;
     }
   },
   methods: {
     getProducts() {
       api.get(this.url)
         .then(res => {
+          this.productsTotal = Number(res.headers['x-total-count'])
           this.products = res.data
         })
         .catch((e) => {
-          console.error('There has been a problem with your fetch operation: ' + e.message);
+          console.error('There has been a problem with your fetch operation:' + e.message);
         })
     }
   },
