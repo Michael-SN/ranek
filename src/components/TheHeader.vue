@@ -19,24 +19,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.9375rem 0;
+  padding: rem(15) 0;
 }
 
 .logo {
-  padding: 0.625rem 0;
+  padding: rem(10) 0;
 }
 
-.logo img {
-  width: 90px;
-  transition: all 0.3s;
-}
-
-.logo img:hover {
-  transform: scale(1.1);
+.logo {
+  img {
+    width: 100px;
+    transition: all 0.3s;
+  }
 }
 </style>
