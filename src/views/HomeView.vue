@@ -22,14 +22,14 @@ export default {
 </script>
 
 
-<style scoped>
+<style lang="scss" scoped>
 .home {
-  margin-top: 2.5rem;
-}
+  margin-top: rem(40);
 
-h1 {
-  text-align: center;
-  color: var(--bg-purple);
-  font-size: 2rem;
+  h1 {
+    text-align: center;
+    color: map-get($color, _purple);
+    font-size: rem(32);
+  }
 }
 </style>
