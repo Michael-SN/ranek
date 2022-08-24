@@ -12,13 +12,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 footer {
-  background-color: var(--bg-purple);
-  padding: 1.5625rem 0;
+  background-color: map-get($color, _purple);
+  padding: rem(25) 0;
   text-align: center;
   color: #fff;
-  font-size: 0.875rem;
   position: relative;
+
+  p {
+    font-size: rem(14);
+  }
 }
 </style>
