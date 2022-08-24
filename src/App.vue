@@ -22,18 +22,7 @@ export default {
 };
 </script>
 
-<style >
-:root {
-  /* Font family */
-  --font-family: "Poppins", sans-serif;
-  /* Colors and Background */
-  --bg-purple: #87f;
-  --bg-hover-purple: #65d;
-  --text-primary: #345;
-  --text-orange: #e80;
-  --shadow-box: rgba(30, 60, 90, 0.2);
-}
-
+<style lang="scss">
 * {
   box-sizing: border-box;
 }
@@ -53,13 +42,13 @@ ul {
 }
 
 body {
-  font-family: var(--font-family), sans-serif;
-  color: var(--text-primary);
+  font-family: $font-family, sans-serif;
+  color: map-get($color, _text);
   background: url("./assets/pattern.svg") repeat top;
 }
 
 a {
-  color: var(--text-primary);
+  color: map-get($color, _text);
   text-decoration: none;
 }
 
@@ -75,7 +64,7 @@ img {
 }
 
 .container {
-  padding: 0 1.5rem;
+  padding: 0 rem(24);
   margin: 0 auto;
   max-width: 100%;
 }
@@ -86,44 +75,43 @@ main {
 
 .btn {
   display: block;
-  padding: 0.625rem 1.875rem;
-  background-color: var(--bg-purple);
-  border-radius: 0.25rem;
+  padding: rem(10) rem(30);
+  background-color: map-get($color, _purple);
+  border-radius: rem(4);
   text-align: center;
-  font-size: 1rem;
-  box-shadow: 0 4px 8px var(--shadow-box);
-  font-family: var(--font-family);
+  font-size: $font-size;
+  box-shadow: 0 rem(4) rem(8) map-get($color, _shadow);
+  font-family: $font-family;
   color: #fff;
   transition: all 0.3s;
   border: none;
-}
 
-.btn:hover {
-  background-color: var(--bg-hover-purple);
-  transform: scale(1.1);
+  &:hover {
+    background-color: map-get($color, _purple_2);
+    transform: scale(1.1);
+  }
 }
 
 
 input,
 textarea {
-  border-radius: 4px;
+  border-radius: rem(4);
   border: 1px solid #fff;
-  padding: 0.9375rem;
-  box-shadow: 0 4px 8px var(--shadow-box);
+  padding: rem(15);
+  box-shadow: 0 rem(4) rem(8) map-get($color, _shadow);
   transition: all .3s;
-  font-size: 1rem;
-  font-family: var(--font-family);
-  margin-bottom: 0.9375rem;
+  font-size: $font-size;
+  font-family: $font-family;
+  margin-bottom: rem(15);
 }
-
 
 input:hover,
 input:focus,
 textarea:hover,
 textarea:focus {
   outline: none;
-  box-shadow: 0 6px 12px var(--shadow-box);
-  border-color: var(--bg-hover-purple);
+  box-shadow: 0 rem(6) rem(12) map-get($color, _shadow);
+  border-color: map-get($color, _purple_2);
 }
 
 .v-enter,
