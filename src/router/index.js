@@ -10,6 +10,13 @@ const routes = [
     name: "home",
     component: HomeView,
   },
+  {
+    path: "/product/:id",
+    name: "product",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/ProductPage.vue"),
+    props: true,
+  },
   // {
   //   path: "/",
   //   name: "",

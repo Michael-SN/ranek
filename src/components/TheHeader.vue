@@ -35,6 +35,7 @@ export default {
   width: 90px;
   transition: all 0.3s;
 }
+
 .logo img:hover {
   transform: scale(1.1);
 }

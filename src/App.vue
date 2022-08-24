@@ -22,7 +22,7 @@ export default {
 };
 </script>
 
-<style>
+<style >
 :root {
   /* Font family */
   --font-family: "Poppins", sans-serif;
@@ -95,6 +95,7 @@ main {
   font-family: var(--font-family);
   color: #fff;
   transition: all 0.3s;
+  border: none;
 }
 
 .btn:hover {
