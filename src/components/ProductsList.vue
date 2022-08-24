@@ -73,7 +73,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .products-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -82,41 +82,41 @@ export default {
 .products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1.875rem;
-  margin: 1.875rem;
+  grid-gap: rem(30);
+  margin: rem(30);
 }
 
 .product {
-  box-shadow: 0 4px 8px var(--shadow-box);
-  padding: .625rem;
+  padding: rem(10);
   background: #fff;
-  border-radius: 4px;
+  border-radius: rem(4);
   transition: all .3s;
-}
+  box-shadow: 0 rem(4) rem(8) map-get($color, _shadow);
 
-.product:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, .2);
-  position: relative;
-  z-index: 1;
-}
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 rem(6) rem(10) rgba(0, 0, 0, .2);
+    position: relative;
+    z-index: 1;
+  }
 
-.product img {
-  border-radius: 4px;
-  margin-bottom: 1.25rem;
-}
+  img {
+    border-radius: rem(4);
+    margin-bottom: rem(20);
+  }
 
-.title {
-  margin-bottom: .625rem;
-}
+  .title {
+    margin-bottom: rem(10);
+  }
 
-.price {
-  color: var(--text-orange);
-  font-weight: bold;
-}
+  .price {
+    color: map-get($color, _orange);
+    font-weight: bold;
+  }
 
-.no-result {
-  padding: .8rem 0;
-  text-align: center;
+  .no-result {
+    padding: rem(12) 0;
+    text-align: center;
+  }
 }
 </style>
