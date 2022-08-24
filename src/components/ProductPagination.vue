@@ -66,12 +66,12 @@ li {
 li a {
   padding: 0.125rem .5rem;
   border-radius: 2px;
-  margin: rem(4);
+  margin: 4px;
 }
 
 li a.router-link-exact-active,
 li a:hover {
-  background: map-get($color, _orange);
+  background: var(--bg-purple);
   color: #fff;
 }
 </style>

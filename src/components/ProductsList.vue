@@ -1,23 +1,25 @@
 <template>
   <section id="products">
     <div class="products-content">
-      <div class="products" v-if="products && products.length">
-        <div v-for="(product, index) in products" :key="index" class="product">
-          <router-link to="/">
-            <img v-if="product.photos" :src="product.photos[0].src" :alt="product.photos[0].title">
-            <p class="price">{{ product.price }}</p>
-            <h2 class="title">{{ product.name }}</h2>
-            <p>{{ product.description }}</p>
-          </router-link>
+      <transition mode="out-in">
+        <div class="products" v-if="products && products.length" key="products">
+          <div v-for="(product, index) in products" :key="index" class="product">
+            <router-link to="/">
+              <img v-if="product.photos" :src="product.photos[0].src" :alt="product.photos[0].title">
+              <p class="price">{{ product.price }}</p>
+              <h2 class="title">{{ product.name }}</h2>
+              <p>{{ product.description }}</p>
+            </router-link>
+          </div>
+          <ProductPagination :productsTotal="productsTotal" :productsPerPage="productsPerPage" />
         </div>
-        <ProductPagination :productsTotal="productsTotal" :productsPerPage="productsPerPage" />
-      </div>
-      <div v-else-if="products && products.length === 0" class="no-result">
-        <p>Busca sem resultados. Termo não encontrado.</p>
-      </div>
-      <div v-else>
-        <LoadingPage />
-      </div>
+        <div v-else-if="products && products.length === 0" class="no-result" key="no-results">
+          <p>Busca sem resultados. Termo não encontrado.</p>
+        </div>
+        <div v-else key="loading">
+          <LoadingPage />
+        </div>
+      </transition>
     </div>
   </section>
 </template>
@@ -33,7 +35,7 @@ export default {
   data() {
     return {
       products: null,
-      productsPerPage: 3,
+      productsPerPage: 9,
       productsTotal: 0
     }
   },
