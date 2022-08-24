@@ -61,17 +61,19 @@ export default {
 
 li {
   display: inline-block;
-}
 
-li a {
-  padding: 0.125rem .5rem;
-  border-radius: 2px;
-  margin: 4px;
-}
+  a {
 
-li a.router-link-exact-active,
-li a:hover {
-  background: var(--bg-purple);
-  color: #fff;
+    padding: rem(2) rem(8);
+    border-radius: rem(2);
+    margin: rem(4);
+
+    &.router-link-exact-active,
+    &:hover {
+      background: map-get($color, _purple);
+      color: #fff;
+
+    }
+  }
 }
 </style>
