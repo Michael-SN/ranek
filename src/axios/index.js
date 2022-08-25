@@ -13,3 +13,7 @@ export const api = {
     return axiosInstance.post(endpoint, body);
   },
 };
+
+export function viaCEP(cep) {
+  return axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+}

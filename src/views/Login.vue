@@ -3,9 +3,9 @@
     <h2>Login</h2>
     <form action="">
       <label for="email">Email</label>
-      <input type="text" name="email" id="email" v-model="login.email">
+      <input type="text" name="email" id="email" autocomplete="username" v-model="login.email">
       <label for="passwd">Senha</label>
-      <input type="password" name="passwd" id="passwd" v-model="login.passwd">
+      <input type="password" name="passwd" id="passwd" autocomplete="current-password" v-model="login.passwd">
       <button class="btn" @click.prevent="logon">Logar</button>
     </form>
     <div class="lost-pass">
