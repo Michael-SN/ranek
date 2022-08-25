@@ -71,8 +71,9 @@ img {
   max-width: 100%;
 }
 
-main {
+#main-view {
   flex: 1;
+  padding: 0 0 rem(90) 0;
 }
 
 .btn {

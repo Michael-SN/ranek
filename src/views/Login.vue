@@ -13,10 +13,12 @@
         Esqueceu sua senha? <a href="/">Clique aqui.</a>
       </small>
     </div>
+    <SignUp />
   </div>
 </template>
 
 <script>
+import SignUp from '@/components/Signup.vue'
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Login",
@@ -28,9 +30,13 @@ export default {
       }
     }
   },
+  components: {
+    SignUp,
+  },
   methods: {
     logon() {
       this.$store.dispatch("getUser", this.login.email)
+      this.$router.push({ name: "user" })
     }
   },
 }
