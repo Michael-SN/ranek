@@ -2,6 +2,11 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
+import UserProduct from "@/views/users/UserProduct.vue";
+import UserBuy from "@/views/users/UserBuy.vue";
+import UserEdit from "@/views/users/UserEdit.vue";
+import UserSale from "@/views/users/UserSale.vue";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -26,10 +31,32 @@ const routes = [
   },
   {
     path: "/user",
-    name: "user",
+    // name: "user", --> o mesmo name usado para o fulho abaixo
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/users/User.vue"),
     props: true,
+    children: [
+      {
+        path: "",
+        name: "user",
+        component: UserProduct,
+      },
+      {
+        path: "buy",
+        name: "buy",
+        component: UserBuy,
+      },
+      {
+        path: "edit",
+        name: "user-edit",
+        component: UserEdit,
+      },
+      {
+        path: "sales",
+        name: "sales",
+        component: UserSale,
+      },
+    ],
   },
   // {
   //   path: "/",
