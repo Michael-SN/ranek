@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <nav class="sidnav">
+    <nav class="sidenav">
       <ul>
         <li>
           <router-link :to="{ name: 'user' }">Produtos</router-link>
@@ -38,6 +38,48 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
+.user {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) 1fr;
+  max-width: 900px;
+  margin: rem(40) auto;
+  grid-gap: rem(30);
+  padding: rem(20);
 
+
+  .sidenav {
+    a {
+      display: block;
+      padding: rem(10);
+      background-color: map-get($color, _bege);
+      margin-bottom: rem(10);
+      border-radius: rem(4);
+    }
+
+    a.router-link-exact-active,
+    a:hover,
+    button:hover {
+      background-color: map-get($color, _purple);
+      color: #fff;
+    }
+
+    button {
+      border: none;
+      width: 100%;
+      font-size: $font-size;
+      font-family: $font-family;
+      text-align: left;
+      border-radius: rem(4);
+      padding: rem(10);
+      cursor: pointer;
+      background-color: map-get($color, _bege);
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: 1fr;
+    margin: 0 auto;
+  }
+}
 </style>

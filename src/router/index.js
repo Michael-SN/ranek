@@ -1,7 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import HomeView from "../views/HomeView.vue";
-
+import ProductPage from "../views/ProductPage.vue";
+import Login from "../views/Login.vue";
+import User from "../views/users/User.vue";
 import UserProduct from "@/views/users/UserProduct.vue";
 import UserBuy from "@/views/users/UserBuy.vue";
 import UserEdit from "@/views/users/UserEdit.vue";
@@ -18,22 +20,19 @@ const routes = [
   {
     path: "/product/:id",
     name: "product",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ProductPage.vue"),
+    component: ProductPage,
     props: true,
   },
   {
     path: "/login",
     name: "login",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Login.vue"),
+    component: Login,
     props: true,
   },
   {
     path: "/user",
     // name: "user", --> o mesmo name usado para o fulho abaixo
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/users/User.vue"),
+    component: User,
     props: true,
     children: [
       {
@@ -58,14 +57,6 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: "/",
-  //   name: "",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ "../views/.vue"),
-  // },
 ];
 
 const router = new VueRouter({
