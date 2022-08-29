@@ -10,8 +10,11 @@
         <h1>{{ product.name }}</h1>
         <p class="price">{{ product.price | fullPrice }}</p>
         <p class="description">{{ product.description }}</p>
-        <button class="btn" v-if="product.sold === 'false'">Comprar</button>
-        <button v-else class="btn">Produto Vendido</button>
+        <transition mode="out-in" v-if="product.sold === 'false'">
+          <button class="btn" v-if="!finish" @click="finish = true">Comprar</button>
+          <FinalizePurchase v-else :product="product" />
+        </transition>
+        <button v-else class="btn" disabled>Produto Vendido</button>
       </div>
     </div>
     <LoadingPage v-else />
@@ -19,6 +22,7 @@
 </template>
 
 <script>
+import FinalizePurchase from '@/components/FinalizePurchase.vue'
 import { api } from '@/axios/index.js';
 
 export default {
@@ -26,8 +30,12 @@ export default {
   props: ["id"],
   data() {
     return {
-      product: null
+      product: null,
+      finish: false
     }
+  },
+  components: {
+    FinalizePurchase,
   },
   methods: {
     getProduct() {
