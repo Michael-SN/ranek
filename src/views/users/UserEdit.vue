@@ -22,7 +22,7 @@ export default {
           this.$store.dispatch("getUser")
           this.$router.push({ name: 'user' })
         }).catch(error => {
-          console.log(error)
+          console.log(error.response)
         })
     }
   },
@@ -30,4 +30,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 </style>

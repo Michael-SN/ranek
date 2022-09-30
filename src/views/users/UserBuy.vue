@@ -4,7 +4,7 @@
       <h2>Compras</h2>
       <div class="products-wrapper" v-for="(purchase, index) in purchases" :key="index">
         <ProductItem v-if="purchase.product" :product="purchase.product">
-          <p class="seller"><span>Vendedor</span>{{ purchase.seller_id }}</p>
+          <p class="seller"><span>Vendedor: </span>{{ purchase.seller_id }}</p>
         </ProductItem>
       </div>
     </div>
@@ -30,9 +30,10 @@ export default {
   },
   methods: {
     getPurchases() {
-      api.get(`transaction?buyer_id=${this.user.id}`).then(res => {
-        this.purchases = res.data
-      })
+      api.get(`transaction?buyer_id=${this.user.id}`)
+        .then(res => {
+          this.purchases = res.data
+        })
     }
   },
   watch: {
@@ -51,12 +52,17 @@ export default {
 <style lang="scss" scoped>
 .product-wrapper {
   margin-bottom: rem(40);
+}
 
+h2 {
+  margin-bottom: rem(20);
+}
 
-  .seller {
-    span {
-      margin-bottom: rem(20);
-    }
+.seller {
+  span {
+    margin-bottom: rem(20);
+    color: map-get($color, _orange);
+    font-weight: bold;
   }
 }
 </style>

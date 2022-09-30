@@ -51,7 +51,7 @@ export default {
       if (cep.length === 8) {
         viaCEP(cep)
           .then(res => {
-            console.table(res.data)
+            // console.table(res.data)
             this.street = res.data.logradouro
             this.city = res.data.localidade
             this.state = res.data.uf

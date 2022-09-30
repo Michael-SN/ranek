@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import { api } from '@/axios';
-import { mapState } from 'vuex';
-import UserForm from './UserForm.vue';
+import { api } from "@/axios";
+import { mapState } from "vuex";
+import UserForm from "./UserForm.vue";
 export default {
   name: "FinalizePurchase",
   props: ["product"],
@@ -30,35 +30,35 @@ export default {
           number: this.user.number,
           district: this.user.district,
           city: this.user.city,
-          state: this.user.state
-        }
-      }
-    }
+          state: this.user.state,
+        },
+      };
+    },
   },
   methods: {
     createTransaction() {
-      return api.post('/transaction', this.purchase).then(() => {
-        this.$router.push({ name: 'buy' })
-      })
+      return api.post("/transaction", this.purchase).then(() => {
+        this.$router.push({ name: "buy" });
+      });
     },
     async createUser() {
       try {
-        await this.$store.dispatch("createUser", this.$store.state.user)
-        await this.$store.dispatch("getUser", this.$store.state.user.email)
-        await this.createTransaction()
-
+        await this.$store.dispatch("createUser", this.$store.state.user);
+        await this.$store.dispatch("getUser", this.$store.state.user.email);
+        await this.createTransaction();
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     },
     finishPurchase() {
-      if (!this.$store.state.login) this.createTransaction()
-
-      this.createUser()
-    }
+      if (this.$store.state.login) {
+        this.createTransaction();
+      } else {
+        this.createUser();
+      }
+    },
   },
-
-}
+};
 </script>
 
 <style lang="scss" scoped>
