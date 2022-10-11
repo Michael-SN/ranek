@@ -4,8 +4,8 @@
     <form action="">
       <label for="email">Email</label>
       <input type="text" name="email" id="email" autocomplete="username" v-model="login.email">
-      <label for="passwd">Senha</label>
-      <input type="password" name="passwd" id="passwd" autocomplete="current-password" v-model="login.passwd">
+      <label for="password">Senha</label>
+      <input type="password" name="password" id="password" autocomplete="current-password" v-model="login.password">
       <button class="btn" @click.prevent="logon">Logar</button>
     </form>
     <div class="lost-pass">
@@ -26,7 +26,7 @@ export default {
     return {
       login: {
         email: "",
-        passwd: ""
+        password: ""
       }
     }
   },
@@ -35,8 +35,11 @@ export default {
   },
   methods: {
     logon() {
-      this.$store.dispatch("getUser", this.login.email)
-      this.$router.push({ name: "user" })
+      // eslint-disable-next-line no-unused-vars
+      this.$store.dispatch('loginUser', this.login).then(response => {
+        this.$store.dispatch("getUser")
+        this.$router.push({ name: "user" })
+      })
     }
   },
 }
