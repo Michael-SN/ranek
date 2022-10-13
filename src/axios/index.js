@@ -38,7 +38,7 @@ export const api = {
     );
   },
   validateToken() {
-    return axios.post(
+    return axiosInstance.post(
       `http://backend-ranek.local/wp-json/jwt-auth/v1/token/validate`
     );
   },
