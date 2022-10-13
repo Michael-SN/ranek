@@ -107,6 +107,12 @@ img {
     background-color: map-get($color, _purple_2);
     transform: scale(1.1);
   }
+
+  &.btn-disabled,
+  &.btn-disabled:hover {
+    background-color: #bbc;
+    transform: scale(1);
+  }
 }
 
 

@@ -2,7 +2,6 @@
   <div class="product-list" v-if="product">
     <router-link :to="{ name: 'product', params: { id: product.id } }" class="product-img">
       <img :src="product.photos[0].src" :alt="product.photos[0].title" v-if="product.photos">
-      <small>Ver Produto</small>
     </router-link>
     <div class="info">
       <p class="price">{{ product.price | fullPrice }}</p>
