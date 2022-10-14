@@ -27,13 +27,13 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
-    props: true,
   },
   {
     path: "/user",
-    // name: "user", --> o mesmo name usado para o fulho abaixo
     component: User,
-    props: true,
+    meta: {
+      login: true,
+    },
     children: [
       {
         path: "",
@@ -69,6 +69,18 @@ const router = new VueRouter({
       behavior: "smooth",
     });
   },
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.login)) {
+    if (!window.localStorage.token) {
+      next("/login");
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
