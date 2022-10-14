@@ -7,10 +7,11 @@
       <label for="password">Senha</label>
       <input type="password" name="password" id="password" autocomplete="current-password" v-model="login.password">
       <button class="btn" @click.prevent="logon">Logar</button>
+      <ErrorNotify :errors="errors" />
     </form>
     <div class="lost-pass">
       <small>
-        Esqueceu sua senha? <a href="/">Clique aqui.</a>
+        Esqueceu sua senha? <a href="http://backend-ranek.local/wp-login.php?action=lostpassword">Clique aqui.</a>
       </small>
     </div>
     <SignUp />
@@ -19,6 +20,7 @@
 
 <script>
 import SignUp from '@/components/Signup.vue'
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Login",
@@ -27,7 +29,8 @@ export default {
       login: {
         email: "",
         password: ""
-      }
+      },
+      errors: []
     }
   },
   components: {
@@ -35,10 +38,14 @@ export default {
   },
   methods: {
     logon() {
+      this.errors = []
       // eslint-disable-next-line no-unused-vars
       this.$store.dispatch('loginUser', this.login).then(response => {
         this.$store.dispatch("getUser")
         this.$router.push({ name: "user" })
+      }).catch(error => {
+        console.log(error.response.data.message)
+        this.errors.push(error.response.data.message)
       })
     }
   },

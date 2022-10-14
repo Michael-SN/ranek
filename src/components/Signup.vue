@@ -7,6 +7,7 @@
         <button class="btn btn-form" @click.prevent="createUser">Criar Usuário</button>
       </UserForm>
     </transition>
+    <ErrorNotify :errors="errors" />
   </div>
 </template>
 
@@ -17,7 +18,8 @@ export default {
   name: "SignUp",
   data() {
     return {
-      create: false
+      create: false,
+      errors: []
     }
   },
   components: {
@@ -25,13 +27,14 @@ export default {
   },
   methods: {
     async createUser() {
+      this.errors = []
       try {
         await this.$store.dispatch("createUser", this.$store.state.user)
         await this.$store.dispatch("loginUser", this.$store.state.user)
         await this.$store.dispatch("getUser")
         this.$router.push({ name: "user" })
       } catch (error) {
-        console.log(error)
+        this.errors.push(error.response.data.message)
       }
     }
   },

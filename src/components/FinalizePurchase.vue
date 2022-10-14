@@ -4,6 +4,7 @@
     <UserForm>
       <button class="btn" @click.prevent="finishPurchase">Finalizar Compra</button>
     </UserForm>
+    <ErrorNotify :errors="errors" />
   </section>
 </template>
 
@@ -13,6 +14,11 @@ import { mapState } from "vuex";
 import UserForm from "./UserForm.vue";
 export default {
   name: "FinalizePurchase",
+  data() {
+    return {
+      errors: []
+    }
+  },
   props: ["product"],
   components: {
     UserForm,
@@ -48,10 +54,11 @@ export default {
         await this.$store.dispatch("getUser");
         await this.createTransaction();
       } catch (error) {
-        console.log(error);
+        this.errors.push(error.response.data.message)
       }
     },
     finishPurchase() {
+      this.errors = []
       if (this.$store.state.login) {
         this.createTransaction();
       } else {
